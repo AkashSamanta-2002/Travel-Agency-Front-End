@@ -1,4 +1,3 @@
-// Navbar toggle
 const toggleBtn = document.getElementById("menu-toggle");
 const navLinks = document.getElementById("nav-links");
 
@@ -6,17 +5,22 @@ toggleBtn.addEventListener("click", () => {
   navLinks.classList.toggle("active");
 });
 
-// Budget Filter
+const packages = [
+  { name: "Bali Adventure", price: 41999, days: 5 },
+  { name: "Paris Getaway", price: 74999, days: 4 },
+  { name: "Santorini Escape", price: 107999, days: 6 },
+  { name: "New York Tour", price: 57999, days: 3 },
+  { name: "Goa Beach Holiday", price: 14999, days: 3 },
+  { name: "Dubai Luxury Trip", price: 62999, days: 5 },
+  { name: "Manali Snow Escape", price: 12999, days: 4 },
+  { name: "Thailand Budget Trip", price: 28999, days: 5 },
+  { name: "Kashmir Paradise", price: 21999, days: 5 },
+  { name: "Maldives Honeymoon", price: 88999, days: 6 }
+];
+
 const budgetInput = document.getElementById("budget");
 const budgetValue = document.getElementById("budget-value");
 const packageList = document.getElementById("package-list");
-
-const packages = [
-  { name: "Bali Adventure", price: 499, days: 5 },
-  { name: "Paris Getaway", price: 899, days: 4 },
-  { name: "Santorini Escape", price: 1299, days: 6 },
-  { name: "New York Tour", price: 699, days: 3 }
-];
 
 function renderPackages(maxBudget) {
   packageList.innerHTML = "";
@@ -26,7 +30,7 @@ function renderPackages(maxBudget) {
     card.className = "package-card";
     card.innerHTML = `
       <h3>${p.name}</h3>
-      <p>Price: $${p.price}</p>
+      <p>Price: ₹${p.price.toLocaleString()}</p>
       <p>Duration: ${p.days} days</p>
     `;
     packageList.appendChild(card);
@@ -34,14 +38,12 @@ function renderPackages(maxBudget) {
 }
 
 budgetInput.addEventListener("input", () => {
-  budgetValue.textContent = budgetInput.value;
+  budgetValue.textContent = `₹${Number(budgetInput.value).toLocaleString()}`;
   renderPackages(Number(budgetInput.value));
 });
 
-// Initial render
 renderPackages(Number(budgetInput.value));
 
-// Testimonials Slider (simple rotation)
 const reviews = [
   { text: "Best travel experience ever!", author: "Ayesha K." },
   { text: "Great service and beautiful locations!", author: "Ravi M." },
