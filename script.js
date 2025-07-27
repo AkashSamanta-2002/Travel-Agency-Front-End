@@ -34,8 +34,15 @@ function renderPackages(maxBudget) {
       <p>Duration: ${p.days} days</p>
     `;
     packageList.appendChild(card);
+    // Onclick alert
+    card.addEventListener("click", e => {
+    e.preventDefault();
+    alert("Backend is not ready right now...");
   });
+});
 }
+
+
 
 budgetInput.addEventListener("input", () => {
   budgetValue.textContent = `₹${Number(budgetInput.value).toLocaleString()}`;
